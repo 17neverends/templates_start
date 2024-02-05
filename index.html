@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расчет накладной</title>
+    <link rel="stylesheet" href="/static/templates_delivery/style.css">
+</head>
+<body> 
+    <form>
+        <h1>Детали доставки</h1>
+        <p class="place_title">Получатель</p>
+
+        <label>ФИО/Компания</label>
+        <input type="text" id="recipient_company" name="recipient_company" placeholder="Введите наименование компании">
+
+
+        <label>Контактное лицо</label>
+        <input type="text" id="recipient_fullname" name="recipient_fullname" placeholder="Введите ФИО">
+
+        <div id="recipient_numbers-container">
+
+            <div class="recipient_numbers" id="recipient_numbers1">
+                <div class="numbers-flex"> 
+                    <div style="margin-right: 20px;"> 
+                        <label>Номер</label>
+                        <input type="text" class="recipient_mobile" id="recipient_mobile1" name="recipient_mobile1" placeholder="Введите номер">
+                    </div>
+                    
+                    <div>
+                        <label>Добавочный</label>
+                        <input type="text" class="recipient_addit" id="recipient_addit1" name="recipient_addit1" placeholder="Введите номер">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="created" type="button" id="add" onclick="addNumber('recipient')" >+ Добавить номер</button>
+        
+        
+
+
+
+        <p class="place_title">Отправитель</p>
+
+        <label>ФИО/Компания</label>
+        <input type="text" id="sender_company" name="sender_company" placeholder="Введите наименование компании">
+
+
+        <label>Контактное лицо</label>
+        <input type="text" id="sender_fullname" name="sender_fullname" placeholder="Введите ФИО">
+
+        <div id="sender_numbers-container">
+
+            <div class="sender_numbers" id="sender_numbers1">
+                <div class="numbers-flex"> 
+                    <div style="margin-right: 20px;"> 
+                        <label>Номер</label>
+                        <input type="text" class="sender_mobile" id="sender_mobile1" name="sender_mobile1" placeholder="Введите номер">
+                    </div>
+                    
+                <div>
+                    <label>Добавочный</label>
+                    <input type="text" class="sender_addit" id="sender_addit1" name="sender_addit1" placeholder="Введите номер">
+                </div>
+            </div>
+            </div>
+        </div>
+        <button class="created" type="button" id="add" onclick="addNumber('sender')" >+ Добавить номер</button>
+        
+        
+        
+
+
+
+
+
+        <label class="status" id="status"></label>
+
+        <button type="button" id="confirm" onclick="check_inputs()">Принять</button>
+    </form>
+    <script src="/static/templates_delivery/main.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>  
+</body>
+</html>
