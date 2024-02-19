@@ -3,19 +3,22 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-width: 100%;
     -ms-overflow-style: none;
-    scrollbar-width: none;
-    scrollbar-width: none;
-    scrollbar-color: transparent transparent;
-    overflow-y: scroll; 
+     scrollbar-width: none; 
+     scrollbar-color: transparent transparent;
+     overflow-y: scroll;
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
+
+
+::-webkit-scrollbar {
+    width: 0;
+  }
+
 
 h1 {
     font-size: 20px;
@@ -43,13 +46,16 @@ to {
 
 
 
-
+button:hover  {
+    background-color: #1ab248;
+    color: white;
+}
 
 form {
     background-color: #fff;
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    max-width: 400px;
+    max-width: 1000px;
     width: 100%;
     margin: auto;
     height: 100%;
@@ -62,11 +68,41 @@ label {
     margin-top: 15px;
 }
 
+.size {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    justify-content: flex-start;
+
+}
+
+.place {
+    width: 100%;
+}
+
+.delimetr {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.size input {
+    flex: 1;
+    text-align: center;
+}
 
 * {
     outline: none;
 }
 
+.highlight {
+    font-weight: bold;
+  }
+
+#title {
+    margin-top: 70px;
+
+}
 .error {
     border-color: red;
     outline: none;
@@ -87,7 +123,55 @@ input[type="text"] {
 }
 
 
+#checkboxContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+ 
+
+ #paymentCheckbox{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px; 
+    height: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #4caf50; 
+    border-radius: 5px; 
+    outline: none;
+    cursor: pointer;
+    min-width: 2px;
+
+}
+
+#paymentCheckbox:checked {
+    background-color: #4caf50;
+    border: 2px solid #4caf50;
+    min-width: 20px;
+}
+
+#paymentCheckbox::before {
+    content: '\2713';
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    line-height: 18px; 
+    color: white;
+    font-size: 17px; 
+    font-weight: bold;
+    min-width: 20px;
+    z-index: -1;
+    margin-left: -1px;
+}
+
+
+
+#for_delete {
+    margin-bottom: 20px;
+}
+  
 
 .status {
     min-height: 20px;
@@ -127,6 +211,7 @@ input[type="text"]:hover {
     justify-content: center;
     line-height: 30px;
     transition: 0.5s; 
+
 }
 
 #confirm:hover {
@@ -136,6 +221,8 @@ input[type="text"]:hover {
 #confirm:active {
     background-color: #158e3a;
 }
+
+
 
 .inputform {
     position: relative;
@@ -147,29 +234,45 @@ input[type="text"]:hover {
     display: flex;
     border-bottom: 2px solid #4bba5d;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     margin-top: 40px;
-    font-size: 20px;
+    font-size: 17px;
 }
 
-#add {
-    margin-bottom: 50px;
-    margin-top: 20px;
+.dropdown-list {
+    display: none;
 }
 
-.recipient_numbers, .sender_numbers {
-    border:1px solid #4bba5d;
-    padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 10px;
-}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    max-height: 300px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  li {
+    padding: 8px;
+    cursor: pointer;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+  
+  li:hover {
+    background-color: #ddd;
+  }
 
-.numbers-flex{
-    display: flex;
-}
 
 .created {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
     background-color: white;
     color: #1ab248;
     padding: 10px 15px;
@@ -177,15 +280,16 @@ input[type="text"]:hover {
     cursor: pointer;
     height: 7vh;
     width: 100%;
+    margin-bottom: -40px;
     margin-top: 5px;
     border-radius: 10px;
     font-size: 17px;
     text-align: center;
-    height: 25px;
-    min-height: 25px;
+    height: 50px;
+    min-height: 50px;
     display: flex;
     justify-content: center;
-    line-height: 5px;
+    line-height: 30px;
     transition: 0.5s; 
 
 }
@@ -196,3 +300,24 @@ input[type="text"]:hover {
 
 }
 
+.created:active {
+    background-color: #158e3a;
+    color: white;
+
+}
+
+
+#scrollToTopBtn {
+    position:fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #4bba5d;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+}

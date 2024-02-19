@@ -4,82 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Расчет накладной</title>
-    <link rel="stylesheet" href="/static/templates_delivery/style.css">
+    <link rel="stylesheet" href="/static/templates/style.css">
 </head>
 <body> 
     <form>
-        <h1>Детали доставки</h1>
-        <p class="place_title">Получатель</p>
+        <h1>Общая информация</h1>
+        <label>Название шаблона</label>
+        <input type="text" id="template_name" name="template_name"  placeholder="Введите название шаблона">
+        <label>Вы являетесь</label>
+        <input type="text" id="combobox_value" onclick="showDropdown()" placeholder="Выберите роль" readonly>
+        <ul id="roleList" class="dropdown-list">
+            <li value="sender" data-id="sender" class="option" onclick="selectRole('sender', 'Получатель')">Получатель</li>
+            <li value="recipient" data-id="recipient" class="option" onclick="selectRole('recipient', 'Отправитель')">Отправитель</li>
+            <li value="outsider" data-id="outsider" class="option" onclick="selectRole('outsider', 'Третьей стороной')">Третьей стороной</li>
+        </ul>
+        
+        
+        <div id="checkboxContainer" style="display: none;">
+            <label>
+                <input type="checkbox" id="paymentCheckbox"> Оплата при получении?
+            </label>
+        </div>
+        <label>Город отправителя</label>
+        <div class="departure_city_dropdown">
 
-        <label>ФИО/Компания</label>
-        <input type="text" id="recipient_company" name="recipient_company" placeholder="Введите наименование компании">
+        <input type="text" id="departure_city" name="departure_city" placeholder="Введите город отправителя">
+        <ul id="departure_city-list" data-cities="{{ data }}"></ul>
+        </div>
+
+        <label>Город получателя</label>
+        <div class="destination_city_dropdown">
+
+        <input type="text" id="destination_city" name="destination_city" placeholder="Введите город получателя">
+        <ul id="destination_city-list" data-cities="{{ data }}"></ul>
+        </div>
 
 
-        <label>Контактное лицо</label>
-        <input type="text" id="recipient_fullname" name="recipient_fullname" placeholder="Введите ФИО">
 
-        <div id="recipient_numbers-container">
+        <div id="places-container">
 
-            <div class="recipient_numbers" id="recipient_numbers1">
-                <div class="numbers-flex"> 
-                    <div style="margin-right: 20px;"> 
-                        <label>Номер</label>
-                        <input type="text" class="recipient_mobile" id="recipient_mobile1" name="recipient_mobile1" placeholder="Введите номер">
-                    </div>
-                    
-                    <div>
-                        <label>Добавочный</label>
-                        <input type="text" class="recipient_addit" id="recipient_addit1" name="recipient_addit1" placeholder="Введите номер">
+            <div class="place" id="place1">
+                <p class="place_title">Место 1</p>
+                <label>Вес посылки (кг)</label>
+                <input type="text" class="box_weight" id="box_weight1" name="box_weight1" placeholder="Введите вес посылки">
+                <label id="box_size">Размер посылки (см)</label>
 
-                    </div>
+                <div class="size">
+                
+                    <input type="text" class="box_length" id="box_length1" name="box_length1" placeholder="Длина">
+                    <p class="delimetr" style="color: #808080;">x</p>
+                    <input type="text"class="box_width" id="box_width1" name="box_width1" placeholder="Ширина">
+                    <p class="delimetr" style="color: #808080;">x</p>
+                    <input type="text" class="box_height" id="box_height1" name="box_height1" placeholder="Высота">
                 </div>
+                <label>Описание товара</label>
+                <input type="text" class="desc" id="desc1" name="desc1" value="ТНП" placeholder="Введите описание товара">
+
             </div>
         </div>
-        <button class="created" type="button" id="add" onclick="addNumber('recipient')" >+ Добавить номер</button>
-        
-        
-
-
-
-        <p class="place_title">Отправитель</p>
-
-        <label>ФИО/Компания</label>
-        <input type="text" id="sender_company" name="sender_company" placeholder="Введите наименование компании">
-
-
-        <label>Контактное лицо</label>
-        <input type="text" id="sender_fullname" name="sender_fullname" placeholder="Введите ФИО">
-
-        <div id="sender_numbers-container">
-
-            <div class="sender_numbers" id="sender_numbers1">
-                <div class="numbers-flex"> 
-                    <div style="margin-right: 20px;"> 
-                        <label>Номер</label>
-                        <input type="text" class="sender_mobile" id="sender_mobile1" name="sender_mobile1" placeholder="Введите номер">
-                    </div>
-                    
-                <div>
-                    <label>Добавочный</label>
-                    <input type="text" class="sender_addit" id="sender_addit1" name="sender_addit1" placeholder="Введите номер">
-                </div>
-            </div>
-            </div>
-        </div>
-        <button class="created" type="button" id="add" onclick="addNumber('sender')" >+ Добавить номер</button>
-        
-        
-        
-
-
-
-
+        <button class="created" type="button" id="add" onclick="addPlace()" >+ Добавить место</button>
 
         <label class="status" id="status"></label>
 
         <button type="button" id="confirm" onclick="check_inputs()">Принять</button>
+        <button type="button" onclick="scrollToTop()" id="scrollToTopBtn">↑</button>
+
     </form>
-    <script src="/static/templates_delivery/main.js"></script>
+    <script src="/static/templates/main.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>  
 </body>
 </html>
